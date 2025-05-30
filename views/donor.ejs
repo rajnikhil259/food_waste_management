@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Donor Dashboard</title>
+ 
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #F9F9F9;
+      margin: 0;
+    }
+    header {
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .nav-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #333;
+    }
+    .menu-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .feed {
+      padding: 2rem;
+    }
+    .post {
+      background: white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+    }
+    form textarea, form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border-radius: 10px;
+      font-size: 15px;
+    }
+    form textarea {
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100%;
+      background: #ffffff;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      padding: 1rem 1.5rem;
+      overflow-y: auto;
+      transition: right 0.3s ease;
+    }
+    .sidebar.visible {
+      right: 0;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.4em 0.7em;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      border-radius: 5px;
+      margin-top: 0.4rem;
+    }
+    .status-pending {
+      background-color: orange;
+    }
+    .status-fulfilled {
+      background-color: green;
+    }
+    .logout-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #555;
+    }
+  </style>
+
+</head>
+<body class="body2">
+  <header>
+    <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div>
+    <div class="nav-title">Hello, <%= user.name %> (Donor)</div>
+    <button class="logout-btn" title="Logout" onclick="window.location.href='/logout'">🔒</button>
+  </header>
+
+  <main class="feed">
+    <% if (requests.length === 0) { %>
+      <p>No pending requests available.</p>
+    <% } %>
+    <% requests.forEach(req => { %>
+      <div class="post">
+        <h3>Receiver: <%= req.receiver_name %></h3>
+        <p>Food: <%= req.food_type %> | Quantity: <%= req.quantity %> | Location: <%= req.location %></p>
+        <form action="/donate" method="POST">
+          <input type="hidden" name="donor_id" value="<%= user.id %>" />
+          <input type="hidden" name="request_id" value="<%= req.id %>" />
+          <textarea name="message" placeholder="Message (optional)"></textarea>
+          <button type="submit">Donate</button>
+        </form>
+      </div>
+    <% }); %>
+  </main>
+
+  <aside id="sidebar" class="sidebar">
+    <h3>Your Donations</h3>
+    <% if (donatedRequests.length === 0) { %>
+      <p>No donations made yet.</p>
+    <% } else { %>
+      <% donatedRequests.forEach(donation => { %>
+        <div>
+          <strong><%= donation.food_type %></strong> for <%= donation.receiver_name %> - <%= donation.quantity %>
+          <div class="status-badge <%= donation.status === 'pending' ? 'status-pending' : 'status-fulfilled' %>">
+            <%= donation.status %>
+          </div>
+        </div>
+        <hr />
+      <% }); %>
+    <% } %>
+  </aside>
+   
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('visible');
+    }
+  </script>
+
+</body>
+</html>
