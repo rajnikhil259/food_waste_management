@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,8 +96,27 @@
       cursor: pointer;
       color: #555;
     }
-  </style>
 
+    /* Search bar flex styling */
+    .search {
+      display: flex; 
+      gap: 10px; 
+      margin: 20px 2rem;
+    }
+    .search input {
+      flex: 7; /* ~70% */
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+    .search button {
+      flex: 3; /* ~30% */
+      padding: 8px;
+      border-radius: 10px;
+      font-size: 15px;
+    }
+  </style>
 </head>
 <body class="body2">
   <header>
@@ -107,10 +125,24 @@
     <button class="logout-btn" title="Logout" onclick="window.location.href='/logout'">🔒</button>
   </header>
 
+  <!-- Search Form -->
+  <form action="/donor/search" method="GET" class="search">
+    <input 
+      type="text" 
+      name="location" 
+      placeholder="Search by location..." 
+      required 
+      value="<%= typeof searchLocation !== 'undefined' ? searchLocation : '' %>"
+
+    />
+    <button type="submit">Search</button>
+  </form>
+
   <main class="feed">
     <% if (requests.length === 0) { %>
-      <p>No pending requests available.</p>
+      <p>No pending requests available<%= searchLocation ? ' for "' + searchLocation + '"' : '' %>.</p>
     <% } %>
+
     <% requests.forEach(req => { %>
       <div class="post">
         <h3>Receiver: <%= req.receiver_name %></h3>
@@ -147,6 +179,5 @@
       document.getElementById('sidebar').classList.toggle('visible');
     }
   </script>
-
 </body>
 </html>
