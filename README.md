@@ -1,5 +1,5 @@
 
-# 🍱 AnnaSetu – *Bug Busters*
+# 🍱 AnnaSetu
 AnnaSetu-" A bridge between food donors and the hungry"
 
 A real-time web platform that bridges the gap between **food donors** (restaurants, individuals) and **receivers** (NGOs, shelters, underprivileged individuals) to reduce food waste and fight hunger.
@@ -12,8 +12,7 @@ A real-time web platform that bridges the gap between **food donors** (restauran
 - 👥 Two user types: **Donor** and **Receiver**  
 - 📝 Receivers can post **food requests** with quantity and location  
 - 🎁 Donors can browse and **fulfill requests** instantly  
-- 📊 Dashboards to **track donation status** and history  
-- 📱 Modern, mobile-friendly **UI inspired by Instagram**  
+- 📊 Dashboards to **track donation status** and history    
 - 🍽️ Simple, scalable architecture to support real-world use cases  
 
 ---
@@ -120,19 +119,10 @@ The server will run on: [http://localhost:8000]
 - 📬 Email notifications for donation updates  
 - 📆 Track food expiration & priority  
 - 🛠️ Admin panel for moderation  
-- 📍 Google Maps integration to visualize donation routes  
-- 📱 PWA support for mobile usability  
+- 📍 Google Maps integration to visualize donation routes   
 
 ---
 
-## 👨‍💻 Made with ❤️ by Team Bug Busters
-
-- [GitHub Profile](https://github.com/rajnikhil259) 
-- [GitHub Profile](https://github.com/aknoru) 
-- [GitHub Profile](https://github.com/drop04) 
-
----
-
-## 🏆 Submission Category
-
-**Open Innovation / Sustainability / Hunger Eradication**
+## 👨‍💻 Author
+- Developed by [NIKHIL RAJ] 
+- 🎯 IIIT Manipur | B.Tech CSE
