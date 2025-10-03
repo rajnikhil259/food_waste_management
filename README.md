@@ -35,7 +35,8 @@ A real-time web platform that bridges the gap between **food donors** (restauran
 ```
 project-root/
 ├── screenshot            # screenshots of project
-├── views/                # EJS templates
+├── views/
+|   |__ landing.ejs       # EJS templates
 │   ├── donor.ejs
 │   └── receiver.ejs
 ├── server.js             # Express server & route handlers
