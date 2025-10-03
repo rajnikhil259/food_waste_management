@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Annasetu - Bridge Between Food & Hunger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x:hidden;
+      scroll-behavior: smooth;
+      background: #f9f9f9;
+      color:#333;
+    }
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:2rem;
+      background: linear-gradient(160deg, #ffffff, #e0f7e0, #fff7e0);
+      overflow:hidden;
+    }
+    .hero h1 {
+      font-size:4rem;
+      color:#28a745;
+      margin-bottom:0.5rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .hero p {
+      font-size:1.5rem;
+      color:#ff8800;
+      margin-bottom:2rem;
+      animation: fadeIn 3s ease-in-out;
+    }
+    .login-btn {
+      background: linear-gradient(90deg, #28a745, #ff8800);
+      color: #fff;
+      padding:1rem 2rem;
+      font-size:1.25rem;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      text-decoration:none;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    .login-btn:hover {
+      transform: scale(1.1);
+      box-shadow:0 0 20px rgba(255,136,0,0.6),0 0 20px rgba(40,167,69,0.6);
+    }
+    @keyframes pulse {
+      0%,100%{transform:scale(1);}
+      50%{transform:scale(1.05);}
+    }
+    @keyframes fadeIn {
+      from {opacity:0; transform:translateY(20px);}
+      to {opacity:1; transform:translateY(0);}
+    }
+    .quotes {
+      margin-top:2rem;
+      font-size:1.2rem;
+      color:#333;
+      animation: fadeIn 4s ease-in-out;
+    }
+    .quotes span { display:block; margin:0.5rem 0; }
+    .shape {
+      position:absolute;
+      opacity:0.25;
+      border-radius:50%;
+      animation: float 20s infinite ease-in-out alternate;
+    }
+    .circle1{width:150px;height:150px;background:#28a745;top:10%;left:10%;}
+    .circle2{width:120px;height:120px;background:#ff8800;top:30%;left:80%;}
+    .circle3{width:100px;height:100px;background:#ffffff;top:60%;left:40%;}
+    @keyframes float {
+      0%{transform:translateY(0) rotate(0deg);}
+      50%{transform:translateY(-50px) rotate(45deg);}
+      100%{transform:translateY(0) rotate(360deg);}
+    }
+    section {
+      padding:4rem 2rem;
+      max-width:1200px;
+      margin:auto;
+    }
+    .about, .how {
+      border-radius:20px;
+      padding:4rem 2rem;
+      margin-bottom:2rem;
+    }
+    .about { background:#28a745; color:white; }
+    .how { background:#ff88009b; color:white; }
+    h2{ font-size:2.5rem; margin-bottom:1rem; }
+    p{ font-size:1.2rem; line-height:1.6; }
+    footer{
+      text-align:center;
+      padding:2rem;
+      background:#1a46b7;
+      color:white;
+    }
+    @media(max-width:768px){
+      .hero h1{font-size:3rem;}
+      .hero p{font-size:1.2rem;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="shape circle1"></div>
+    <div class="shape circle2"></div>
+    <div class="shape circle3"></div>
+    <h1>Annasetu</h1>
+    <p>Bridge Between Food & Hunger</p>
+    <a href="/login" class="login-btn">Go to Login</a>
+    <div class="quotes">
+      <span>"No one should sleep hungry."</span>
+      <span>"Share your food, spread happiness."</span>
+      <span>"One plate can change a life."</span>
+    </div>
+  </div>
+
+  <section class="about">
+    <h2>About Annasetu</h2>
+    <p>Our mission is to connect food donors with those in need, reducing hunger and food waste simultaneously. Everyone deserves a meal.</p>
+  </section>
+
+  <section class="how">
+    <h2>How It Works</h2>
+    <p>Receivers submit food requests, donors see them in real-time, and can donate. Once the donation is confirmed, the request is fulfilled. Simple, fast, impactful.</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Annasetu. All Rights Reserved.
+  </footer>
+
+</body>
+</html>

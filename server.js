@@ -38,7 +38,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Serve login and registration HTML pages
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'login.html'));
+  res.render('landing');
 });
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'login.html'));
