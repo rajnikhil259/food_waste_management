@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <title>Donor Dashboard</title>
- 
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -96,7 +95,6 @@
       cursor: pointer;
       color: #555;
     }
-
     .search {
       display: flex; 
       gap: 10px; 
@@ -117,7 +115,7 @@
     }
   </style>
 </head>
-<body class="body2">
+<body>
   <header>
     <div class="menu-icon" onclick="toggleSidebar()">&#9776;</div>
     <div class="nav-title">Hello, <%= user.name %> (Donor)</div>
@@ -130,35 +128,33 @@
       type="text" 
       name="location" 
       placeholder="Search by location..." 
-      required 
       value="<%= typeof searchLocation !== 'undefined' ? searchLocation : '' %>"
-
     />
     <button type="submit">Search</button>
   </form>
 
   <main class="feed">
-    <% if (requests.length === 0) { %>
-      <p>No pending requests available<%= searchLocation ? ' for "' + searchLocation + '"' : '' %>.</p>
+    <% if (!requests || requests.length === 0) { %>
+      <p>No pending requests available<%= typeof searchLocation !== 'undefined' && searchLocation ? ' for "' + searchLocation + '"' : '' %>.</p>
+    <% } else { %>
+      <% requests.forEach(req => { %>
+        <div class="post">
+          <h3>Receiver: <%= req.receiver_name %></h3>
+          <p>Food: <%= req.food_type %> | Quantity: <%= req.quantity %> | Location: <%= req.location %></p>
+          <form action="/donate" method="POST">
+            <input type="hidden" name="donor_id" value="<%= user.id %>" />
+            <input type="hidden" name="request_id" value="<%= req.id %>" />
+            <textarea name="message" placeholder="Message (optional)"></textarea>
+            <button type="submit">Donate</button>
+          </form>
+        </div>
+      <% }); %>
     <% } %>
-
-    <% requests.forEach(req => { %>
-      <div class="post">
-        <h3>Receiver: <%= req.receiver_name %></h3>
-        <p>Food: <%= req.food_type %> | Quantity: <%= req.quantity %> | Location: <%= req.location %></p>
-        <form action="/donate" method="POST">
-          <input type="hidden" name="donor_id" value="<%= user.id %>" />
-          <input type="hidden" name="request_id" value="<%= req.id %>" />
-          <textarea name="message" placeholder="Message (optional)"></textarea>
-          <button type="submit">Donate</button>
-        </form>
-      </div>
-    <% }); %>
   </main>
 
   <aside id="sidebar" class="sidebar">
     <h3>Your Donations</h3>
-    <% if (donatedRequests.length === 0) { %>
+    <% if (!donatedRequests || donatedRequests.length === 0) { %>
       <p>No donations made yet.</p>
     <% } else { %>
       <% donatedRequests.forEach(donation => { %>
@@ -172,7 +168,7 @@
       <% }); %>
     <% } %>
   </aside>
-   
+
   <script>
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('visible');
