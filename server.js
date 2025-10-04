@@ -57,10 +57,10 @@ app.post('/registration', async (req, res) => {
       'INSERT INTO users (name, email, password, role, organization_name, location) VALUES ($1, $2, $3, $4, $5, $6)',
       [name, email, hashedPassword, role, organization_name || null, location]
     );
-    console.log(`✅ User registered: ${email} as ${role}`);
+    console.log(`User registered: ${email} as ${role}`);
     res.redirect('/login');
   } catch (err) {
-    console.error('❌ Registration error:', err);
+    console.error('Registration error:', err);
     res.status(500).send('Error registering user');
   }
 });
@@ -84,7 +84,7 @@ app.post('/login', async (req, res) => {
     }
 
     req.session.user = user;
-    console.log(`✅ User logged in: ${email} as ${user.role}`);
+    console.log(`User logged in: ${email} as ${user.role}`);
 
     if (user.role === 'donor') {
       res.redirect('/donor');
@@ -94,7 +94,7 @@ app.post('/login', async (req, res) => {
       res.status(403).send('Invalid role');
     }
   } catch (err) {
-    console.error('❌ Login error:', err);
+    console.error('Login error:', err);
     res.status(500).send('Error logging in');
   }
 });
